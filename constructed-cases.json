@@ -1,0 +1,1488 @@
+{
+  "scope": "Constructed review cases, not real user reports and not timing samples.",
+  "complete": true,
+  "cases": [
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-cl100k/empty-list",
+        "lines": [],
+        "prefix": "",
+        "limit": 16,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [],
+      "tokens": [],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-cl100k/one-empty-string",
+        "lines": [
+          ""
+        ],
+        "prefix": "",
+        "limit": 16,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [],
+      "tokens": [],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-cl100k/mixed-empty-lines",
+        "lines": [
+          "",
+          "alpha\n",
+          "",
+          "beta"
+        ],
+        "prefix": "",
+        "limit": 16,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [
+        "alpha\nbeta"
+      ],
+      "tokens": [
+        3
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-cl100k/unicode-lines",
+        "lines": [
+          "中文内容 🙂\n",
+          "café déjà vu\n",
+          "é and αβγ"
+        ],
+        "prefix": "",
+        "limit": 16,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [
+        "中文内容 🙂\ncafé déjà vu\né and αβγ"
+      ],
+      "tokens": [
+        16
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-cl100k/empty-prefix-keep",
+        "lines": [
+          "",
+          "alpha\n",
+          "",
+          "beta"
+        ],
+        "prefix": "",
+        "limit": 16,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [
+        "alpha\nbeta"
+      ],
+      "tokens": [
+        3
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-cl100k/prefixed-empty-lines-keep",
+        "lines": [
+          "",
+          "alpha\n",
+          "",
+          "beta"
+        ],
+        "prefix": "Context: ",
+        "limit": 16,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: alpha\nbeta"
+      ],
+      "tokens": [
+        5
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-cl100k/exact-budget-then-next-keep",
+        "lines": [
+          "alpha beta gamma\n",
+          "delta epsilon\n"
+        ],
+        "prefix": "Context: ",
+        "limit": 6,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: alpha beta gamma\n",
+        "Context: delta epsilon\n"
+      ],
+      "tokens": [
+        6,
+        5
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-cl100k/long-line-keep",
+        "lines": [
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word "
+        ],
+        "prefix": "Context: ",
+        "limit": 16,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: word word word word word word word word word word word word",
+        "Context:  word word word word word word word word word word word word",
+        "Context:  word word word word word word word word word word word word",
+        "Context:  word word word word word word word word word word word word",
+        "Context:  word word word word word word word word word word word word",
+        "Context:  word word word word "
+      ],
+      "tokens": [
+        14,
+        15,
+        15,
+        15,
+        15,
+        8
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-cl100k/long-prefix-keep",
+        "lines": [
+          "alpha beta\n",
+          "gamma"
+        ],
+        "prefix": "Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: ",
+        "limit": 16,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: Context: Context: Context: Context: Context: Context:",
+        " Context: Context: Context: Context: Context: Context: Context:",
+        " Context: Context: Context: Context: Context: Context: Context:",
+        " Context: Context: Context: Context: Context: Context: Context:",
+        " Context: Context: Context: Context: ",
+        "alpha beta\ngamma"
+      ],
+      "tokens": [
+        14,
+        14,
+        14,
+        14,
+        9,
+        4
+      ],
+      "error": null,
+      "warnings": [
+        {
+          "type": "builtins.UserWarning",
+          "message": "Chunks prefix is too long (65 tokens) for chunk size 16. It will be split into multiple chunks and only included in the first chunk(s). Consider increasing max_tokens to accommodate the full prefix in each chunk."
+        }
+      ]
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-cl100k/body-fits-alone-keep",
+        "lines": [
+          "alpha beta gamma delta epsilon zeta eta theta iota kappa",
+          " tail"
+        ],
+        "prefix": "Context: ",
+        "limit": 11,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: alpha beta gamma delta epsilon zeta",
+        "Context:  eta theta iota kappa tail"
+      ],
+      "tokens": [
+        9,
+        8
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-cl100k/empty-prefix-omit",
+        "lines": [
+          "",
+          "alpha\n",
+          "",
+          "beta"
+        ],
+        "prefix": "",
+        "limit": 16,
+        "omit": true,
+        "expected_error": null
+      },
+      "chunks": [
+        "alpha\nbeta"
+      ],
+      "tokens": [
+        3
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-cl100k/prefixed-empty-lines-omit",
+        "lines": [
+          "",
+          "alpha\n",
+          "",
+          "beta"
+        ],
+        "prefix": "Context: ",
+        "limit": 16,
+        "omit": true,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: alpha\nbeta"
+      ],
+      "tokens": [
+        5
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-cl100k/exact-budget-then-next-omit",
+        "lines": [
+          "alpha beta gamma\n",
+          "delta epsilon\n"
+        ],
+        "prefix": "Context: ",
+        "limit": 6,
+        "omit": true,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: alpha beta gamma\n",
+        "Context: delta epsilon\n"
+      ],
+      "tokens": [
+        6,
+        5
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-cl100k/long-line-omit",
+        "lines": [
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word "
+        ],
+        "prefix": "Context: ",
+        "limit": 16,
+        "omit": true,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: ",
+        "word word word word word word word word word word word word word word word",
+        " word word word word word word word word word word word word word word word",
+        " word word word word word word word word word word word word word word word",
+        " word word word word word word word word word word word word word word word",
+        " word word word word "
+      ],
+      "tokens": [
+        3,
+        15,
+        15,
+        15,
+        15,
+        5
+      ],
+      "error": null,
+      "warnings": [
+        {
+          "type": "builtins.UserWarning",
+          "message": "Prefix omitted for at least one line due to omit_prefix_on_overflow=True. Line would overflow with prefix (3 tokens) but fits without it within max_tokens (16). This may result in inconsistent chunk formatting."
+        }
+      ]
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-cl100k/long-prefix-omit",
+        "lines": [
+          "alpha beta\n",
+          "gamma"
+        ],
+        "prefix": "Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: ",
+        "limit": 16,
+        "omit": true,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: Context: Context: Context: Context: Context: Context:",
+        " Context: Context: Context: Context: Context: Context: Context:",
+        " Context: Context: Context: Context: Context: Context: Context:",
+        " Context: Context: Context: Context: Context: Context: Context:",
+        " Context: Context: Context: Context: ",
+        "alpha beta\ngamma"
+      ],
+      "tokens": [
+        14,
+        14,
+        14,
+        14,
+        9,
+        4
+      ],
+      "error": null,
+      "warnings": [
+        {
+          "type": "builtins.UserWarning",
+          "message": "Chunks prefix is too long (65 tokens) for chunk size 16. It will be split into multiple chunks and only included in the first chunk(s). Consider increasing max_tokens to accommodate the full prefix in each chunk."
+        }
+      ]
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-cl100k/body-fits-alone-omit",
+        "lines": [
+          "alpha beta gamma delta epsilon zeta eta theta iota kappa",
+          " tail"
+        ],
+        "prefix": "Context: ",
+        "limit": 11,
+        "omit": true,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: ",
+        "alpha beta gamma delta epsilon zeta eta theta iota kappa",
+        "Context:  tail"
+      ],
+      "tokens": [
+        3,
+        11,
+        4
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-cl100k/special-token-in-content",
+        "lines": [
+          "alpha<|endoftext|>omega"
+        ],
+        "prefix": "",
+        "limit": 16,
+        "omit": false,
+        "expected_error": "builtins.ValueError"
+      },
+      "chunks": null,
+      "tokens": null,
+      "error": {
+        "type": "builtins.ValueError",
+        "message": "Encountered text corresponding to disallowed special token '<|endoftext|>'.\nIf you want this text to be encoded as a special token, pass it to `allowed_special`, e.g. `allowed_special={'<|endoftext|>', ...}`.\nIf you want this text to be encoded as normal text, disable the check for this token by passing `disallowed_special=(enc.special_tokens_set - {'<|endoftext|>'})`.\nTo disable this check for all special tokens, pass `disallowed_special=()`.\n"
+      },
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-cl100k/special-token-after-prefix",
+        "lines": [
+          "<|endoftext|>"
+        ],
+        "prefix": "Context: ",
+        "limit": 16,
+        "omit": false,
+        "expected_error": "builtins.ValueError"
+      },
+      "chunks": null,
+      "tokens": null,
+      "error": {
+        "type": "builtins.ValueError",
+        "message": "Encountered text corresponding to disallowed special token '<|endoftext|>'.\nIf you want this text to be encoded as a special token, pass it to `allowed_special`, e.g. `allowed_special={'<|endoftext|>', ...}`.\nIf you want this text to be encoded as normal text, disable the check for this token by passing `disallowed_special=(enc.special_tokens_set - {'<|endoftext|>'})`.\nTo disable this check for all special tokens, pass `disallowed_special=()`.\n"
+      },
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-cl100k/nonmonotone-chinese",
+        "lines": [
+          "删除a"
+        ],
+        "prefix": "",
+        "limit": 1,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [
+        "删除",
+        "a"
+      ],
+      "tokens": [
+        1,
+        1
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-cl100k/unrepresentable-emoji",
+        "lines": [
+          "🙂"
+        ],
+        "prefix": "",
+        "limit": 1,
+        "omit": false,
+        "expected_error": "builtins.ValueError"
+      },
+      "chunks": null,
+      "tokens": null,
+      "error": {
+        "type": "builtins.ValueError",
+        "message": "Character '🙂' cannot fit within the token budget of 1"
+      },
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-cl100k/exact-prefixed-unicode",
+        "lines": [
+          "🙂🙂"
+        ],
+        "prefix": "¶ ",
+        "limit": 3,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [
+        "¶ 🙂",
+        "¶ 🙂"
+      ],
+      "tokens": [
+        2,
+        2
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-o200k/empty-list",
+        "lines": [],
+        "prefix": "",
+        "limit": 16,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [],
+      "tokens": [],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-o200k/one-empty-string",
+        "lines": [
+          ""
+        ],
+        "prefix": "",
+        "limit": 16,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [],
+      "tokens": [],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-o200k/mixed-empty-lines",
+        "lines": [
+          "",
+          "alpha\n",
+          "",
+          "beta"
+        ],
+        "prefix": "",
+        "limit": 16,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [
+        "alpha\nbeta"
+      ],
+      "tokens": [
+        3
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-o200k/unicode-lines",
+        "lines": [
+          "中文内容 🙂\n",
+          "café déjà vu\n",
+          "é and αβγ"
+        ],
+        "prefix": "",
+        "limit": 16,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [
+        "中文内容 🙂\ncafé déjà vu\né and αβγ"
+      ],
+      "tokens": [
+        14
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-o200k/empty-prefix-keep",
+        "lines": [
+          "",
+          "alpha\n",
+          "",
+          "beta"
+        ],
+        "prefix": "",
+        "limit": 16,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [
+        "alpha\nbeta"
+      ],
+      "tokens": [
+        3
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-o200k/prefixed-empty-lines-keep",
+        "lines": [
+          "",
+          "alpha\n",
+          "",
+          "beta"
+        ],
+        "prefix": "Context: ",
+        "limit": 16,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: alpha\nbeta"
+      ],
+      "tokens": [
+        5
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-o200k/exact-budget-then-next-keep",
+        "lines": [
+          "alpha beta gamma\n",
+          "delta epsilon\n"
+        ],
+        "prefix": "Context: ",
+        "limit": 6,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: alpha beta gamma\n",
+        "Context: delta epsilon\n"
+      ],
+      "tokens": [
+        6,
+        5
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-o200k/long-line-keep",
+        "lines": [
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word "
+        ],
+        "prefix": "Context: ",
+        "limit": 16,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: word word word word word word word word word word word word",
+        "Context:  word word word word word word word word word word word word",
+        "Context:  word word word word word word word word word word word word",
+        "Context:  word word word word word word word word word word word word",
+        "Context:  word word word word word word word word word word word word",
+        "Context:  word word word word "
+      ],
+      "tokens": [
+        14,
+        15,
+        15,
+        15,
+        15,
+        8
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-o200k/long-prefix-keep",
+        "lines": [
+          "alpha beta\n",
+          "gamma"
+        ],
+        "prefix": "Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: ",
+        "limit": 16,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: Context: Context: Context: Context: Context: Context:",
+        " Context: Context: Context: Context: Context: Context: Context:",
+        " Context: Context: Context: Context: Context: Context: Context:",
+        " Context: Context: Context: Context: Context: Context: Context:",
+        " Context: Context: Context: Context: ",
+        "alpha beta\ngamma"
+      ],
+      "tokens": [
+        14,
+        14,
+        14,
+        14,
+        9,
+        4
+      ],
+      "error": null,
+      "warnings": [
+        {
+          "type": "builtins.UserWarning",
+          "message": "Chunks prefix is too long (65 tokens) for chunk size 16. It will be split into multiple chunks and only included in the first chunk(s). Consider increasing max_tokens to accommodate the full prefix in each chunk."
+        }
+      ]
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-o200k/body-fits-alone-keep",
+        "lines": [
+          "alpha beta gamma delta epsilon zeta eta theta iota kappa",
+          " tail"
+        ],
+        "prefix": "Context: ",
+        "limit": 13,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: alpha beta gamma delta epsilon zeta eta theta",
+        "Context:  iota kappa tail"
+      ],
+      "tokens": [
+        11,
+        8
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-o200k/empty-prefix-omit",
+        "lines": [
+          "",
+          "alpha\n",
+          "",
+          "beta"
+        ],
+        "prefix": "",
+        "limit": 16,
+        "omit": true,
+        "expected_error": null
+      },
+      "chunks": [
+        "alpha\nbeta"
+      ],
+      "tokens": [
+        3
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-o200k/prefixed-empty-lines-omit",
+        "lines": [
+          "",
+          "alpha\n",
+          "",
+          "beta"
+        ],
+        "prefix": "Context: ",
+        "limit": 16,
+        "omit": true,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: alpha\nbeta"
+      ],
+      "tokens": [
+        5
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-o200k/exact-budget-then-next-omit",
+        "lines": [
+          "alpha beta gamma\n",
+          "delta epsilon\n"
+        ],
+        "prefix": "Context: ",
+        "limit": 6,
+        "omit": true,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: alpha beta gamma\n",
+        "Context: delta epsilon\n"
+      ],
+      "tokens": [
+        6,
+        5
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-o200k/long-line-omit",
+        "lines": [
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word "
+        ],
+        "prefix": "Context: ",
+        "limit": 16,
+        "omit": true,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: ",
+        "word word word word word word word word word word word word word word word",
+        " word word word word word word word word word word word word word word word",
+        " word word word word word word word word word word word word word word word",
+        " word word word word word word word word word word word word word word word",
+        " word word word word "
+      ],
+      "tokens": [
+        3,
+        15,
+        15,
+        15,
+        15,
+        5
+      ],
+      "error": null,
+      "warnings": [
+        {
+          "type": "builtins.UserWarning",
+          "message": "Prefix omitted for at least one line due to omit_prefix_on_overflow=True. Line would overflow with prefix (3 tokens) but fits without it within max_tokens (16). This may result in inconsistent chunk formatting."
+        }
+      ]
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-o200k/long-prefix-omit",
+        "lines": [
+          "alpha beta\n",
+          "gamma"
+        ],
+        "prefix": "Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: ",
+        "limit": 16,
+        "omit": true,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: Context: Context: Context: Context: Context: Context:",
+        " Context: Context: Context: Context: Context: Context: Context:",
+        " Context: Context: Context: Context: Context: Context: Context:",
+        " Context: Context: Context: Context: Context: Context: Context:",
+        " Context: Context: Context: Context: ",
+        "alpha beta\ngamma"
+      ],
+      "tokens": [
+        14,
+        14,
+        14,
+        14,
+        9,
+        4
+      ],
+      "error": null,
+      "warnings": [
+        {
+          "type": "builtins.UserWarning",
+          "message": "Chunks prefix is too long (65 tokens) for chunk size 16. It will be split into multiple chunks and only included in the first chunk(s). Consider increasing max_tokens to accommodate the full prefix in each chunk."
+        }
+      ]
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-o200k/body-fits-alone-omit",
+        "lines": [
+          "alpha beta gamma delta epsilon zeta eta theta iota kappa",
+          " tail"
+        ],
+        "prefix": "Context: ",
+        "limit": 13,
+        "omit": true,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: ",
+        "alpha beta gamma delta epsilon zeta eta theta iota kappa",
+        "Context:  tail"
+      ],
+      "tokens": [
+        3,
+        13,
+        4
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-o200k/special-token-in-content",
+        "lines": [
+          "alpha<|endoftext|>omega"
+        ],
+        "prefix": "",
+        "limit": 16,
+        "omit": false,
+        "expected_error": "builtins.ValueError"
+      },
+      "chunks": null,
+      "tokens": null,
+      "error": {
+        "type": "builtins.ValueError",
+        "message": "Encountered text corresponding to disallowed special token '<|endoftext|>'.\nIf you want this text to be encoded as a special token, pass it to `allowed_special`, e.g. `allowed_special={'<|endoftext|>', ...}`.\nIf you want this text to be encoded as normal text, disable the check for this token by passing `disallowed_special=(enc.special_tokens_set - {'<|endoftext|>'})`.\nTo disable this check for all special tokens, pass `disallowed_special=()`.\n"
+      },
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "openai-o200k/special-token-after-prefix",
+        "lines": [
+          "<|endoftext|>"
+        ],
+        "prefix": "Context: ",
+        "limit": 16,
+        "omit": false,
+        "expected_error": "builtins.ValueError"
+      },
+      "chunks": null,
+      "tokens": null,
+      "error": {
+        "type": "builtins.ValueError",
+        "message": "Encountered text corresponding to disallowed special token '<|endoftext|>'.\nIf you want this text to be encoded as a special token, pass it to `allowed_special`, e.g. `allowed_special={'<|endoftext|>', ...}`.\nIf you want this text to be encoded as normal text, disable the check for this token by passing `disallowed_special=(enc.special_tokens_set - {'<|endoftext|>'})`.\nTo disable this check for all special tokens, pass `disallowed_special=()`.\n"
+      },
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "hf-minilm/empty-list",
+        "lines": [],
+        "prefix": "",
+        "limit": 16,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [],
+      "tokens": [],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "hf-minilm/one-empty-string",
+        "lines": [
+          ""
+        ],
+        "prefix": "",
+        "limit": 16,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [],
+      "tokens": [],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "hf-minilm/mixed-empty-lines",
+        "lines": [
+          "",
+          "alpha\n",
+          "",
+          "beta"
+        ],
+        "prefix": "",
+        "limit": 16,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [
+        "alpha\nbeta"
+      ],
+      "tokens": [
+        2
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "hf-minilm/unicode-lines",
+        "lines": [
+          "中文内容 🙂\n",
+          "café déjà vu\n",
+          "é and αβγ"
+        ],
+        "prefix": "",
+        "limit": 16,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [
+        "中文内容 🙂\ncafé déjà vu\né and αβγ"
+      ],
+      "tokens": [
+        14
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "hf-minilm/empty-prefix-keep",
+        "lines": [
+          "",
+          "alpha\n",
+          "",
+          "beta"
+        ],
+        "prefix": "",
+        "limit": 16,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [
+        "alpha\nbeta"
+      ],
+      "tokens": [
+        2
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "hf-minilm/prefixed-empty-lines-keep",
+        "lines": [
+          "",
+          "alpha\n",
+          "",
+          "beta"
+        ],
+        "prefix": "Context: ",
+        "limit": 16,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: alpha\nbeta"
+      ],
+      "tokens": [
+        4
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "hf-minilm/exact-budget-then-next-keep",
+        "lines": [
+          "alpha beta gamma\n",
+          "delta epsilon\n"
+        ],
+        "prefix": "Context: ",
+        "limit": 5,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: alpha beta gamma\n",
+        "Context: delta epsilon\n"
+      ],
+      "tokens": [
+        5,
+        4
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "hf-minilm/long-line-keep",
+        "lines": [
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word "
+        ],
+        "prefix": "Context: ",
+        "limit": 16,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: word word word word word word word word word word word word word word",
+        "Context:  word word word word word word word word word word word word word",
+        "Context:  word word word word word word word word word word word word word",
+        "Context:  word word word word word word word word word word word word word word",
+        "Context:  word word word word word word word word word word "
+      ],
+      "tokens": [
+        16,
+        15,
+        15,
+        16,
+        12
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "hf-minilm/long-prefix-keep",
+        "lines": [
+          "alpha beta\n",
+          "gamma"
+        ],
+        "prefix": "Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: ",
+        "limit": 16,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: Context: Context: Context: Context: Context: Context: Context:",
+        " Context: Context: Context: Context: Context: Context: Context: Context:",
+        " Context: Context: Context: Context: Context: Context: Context: Context:",
+        " Context: Context: Context: Context: Context: Context: Context: Context: ",
+        "alpha beta\ngamma"
+      ],
+      "tokens": [
+        16,
+        16,
+        16,
+        16,
+        3
+      ],
+      "error": null,
+      "warnings": [
+        {
+          "type": "builtins.UserWarning",
+          "message": "Chunks prefix is too long (64 tokens) for chunk size 16. It will be split into multiple chunks and only included in the first chunk(s). Consider increasing max_tokens to accommodate the full prefix in each chunk."
+        }
+      ]
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "hf-minilm/body-fits-alone-keep",
+        "lines": [
+          "alpha beta gamma delta epsilon zeta eta theta iota kappa",
+          " tail"
+        ],
+        "prefix": "Context: ",
+        "limit": 11,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: alpha beta gamma delta epsilon zeta eta theta",
+        "Context:  iota kappa tail"
+      ],
+      "tokens": [
+        10,
+        6
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "hf-minilm/empty-prefix-omit",
+        "lines": [
+          "",
+          "alpha\n",
+          "",
+          "beta"
+        ],
+        "prefix": "",
+        "limit": 16,
+        "omit": true,
+        "expected_error": null
+      },
+      "chunks": [
+        "alpha\nbeta"
+      ],
+      "tokens": [
+        2
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "hf-minilm/prefixed-empty-lines-omit",
+        "lines": [
+          "",
+          "alpha\n",
+          "",
+          "beta"
+        ],
+        "prefix": "Context: ",
+        "limit": 16,
+        "omit": true,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: alpha\nbeta"
+      ],
+      "tokens": [
+        4
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "hf-minilm/exact-budget-then-next-omit",
+        "lines": [
+          "alpha beta gamma\n",
+          "delta epsilon\n"
+        ],
+        "prefix": "Context: ",
+        "limit": 5,
+        "omit": true,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: alpha beta gamma\n",
+        "Context: delta epsilon\n"
+      ],
+      "tokens": [
+        5,
+        4
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "hf-minilm/long-line-omit",
+        "lines": [
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word "
+        ],
+        "prefix": "Context: ",
+        "limit": 16,
+        "omit": true,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: ",
+        "word word word word word word word word word word word word word word word word",
+        " word word word word word word word word word word word word word word word word",
+        " word word word word word word word word word word word word word word word word",
+        " word word word word word word word word word word word word word word word word "
+      ],
+      "tokens": [
+        2,
+        16,
+        16,
+        16,
+        16
+      ],
+      "error": null,
+      "warnings": [
+        {
+          "type": "builtins.UserWarning",
+          "message": "Prefix omitted for at least one line due to omit_prefix_on_overflow=True. Line would overflow with prefix (2 tokens) but fits without it within max_tokens (16). This may result in inconsistent chunk formatting."
+        }
+      ]
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "hf-minilm/long-prefix-omit",
+        "lines": [
+          "alpha beta\n",
+          "gamma"
+        ],
+        "prefix": "Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: Context: ",
+        "limit": 16,
+        "omit": true,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: Context: Context: Context: Context: Context: Context: Context:",
+        " Context: Context: Context: Context: Context: Context: Context: Context:",
+        " Context: Context: Context: Context: Context: Context: Context: Context:",
+        " Context: Context: Context: Context: Context: Context: Context: Context: ",
+        "alpha beta\ngamma"
+      ],
+      "tokens": [
+        16,
+        16,
+        16,
+        16,
+        3
+      ],
+      "error": null,
+      "warnings": [
+        {
+          "type": "builtins.UserWarning",
+          "message": "Chunks prefix is too long (64 tokens) for chunk size 16. It will be split into multiple chunks and only included in the first chunk(s). Consider increasing max_tokens to accommodate the full prefix in each chunk."
+        }
+      ]
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "hf-minilm/body-fits-alone-omit",
+        "lines": [
+          "alpha beta gamma delta epsilon zeta eta theta iota kappa",
+          " tail"
+        ],
+        "prefix": "Context: ",
+        "limit": 11,
+        "omit": true,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: ",
+        "alpha beta gamma delta epsilon zeta eta theta iota kappa",
+        "Context:  tail"
+      ],
+      "tokens": [
+        2,
+        11,
+        3
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "hf-minilm/special-token-in-content",
+        "lines": [
+          "alpha<|endoftext|>omega"
+        ],
+        "prefix": "",
+        "limit": 16,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [
+        "alpha<|endoftext|>omega"
+      ],
+      "tokens": [
+        10
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "hf-minilm/special-token-after-prefix",
+        "lines": [
+          "<|endoftext|>"
+        ],
+        "prefix": "Context: ",
+        "limit": 16,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [
+        "Context: <|endoftext|>"
+      ],
+      "tokens": [
+        10
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "hf-minilm/nonadditive-concatenation",
+        "lines": [
+          "Column Column"
+        ],
+        "prefix": "a",
+        "limit": 4,
+        "omit": false,
+        "expected_error": null
+      },
+      "chunks": [
+        "aColumn",
+        "a Column"
+      ],
+      "tokens": [
+        4,
+        2
+      ],
+      "error": null,
+      "warnings": []
+    },
+    {
+      "event": "case-result",
+      "case": {
+        "id": "hf-minilm/nonadditive-prefix-omission",
+        "lines": [
+          "Column Column"
+        ],
+        "prefix": "a",
+        "limit": 4,
+        "omit": true,
+        "expected_error": null
+      },
+      "chunks": [
+        "a",
+        "Column Column"
+      ],
+      "tokens": [
+        1,
+        2
+      ],
+      "error": null,
+      "warnings": []
+    }
+  ],
+  "candidate_records_equal_baseline": true,
+  "compared_fields": [
+    "case",
+    "chunks",
+    "tokens",
+    "error",
+    "warnings"
+  ],
+  "checks": {
+    "compared_cases": 59,
+    "difference_ids": [],
+    "invalid_result_ids": [],
+    "passed": true
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "baseline_warning_count": 493,
+  "candidate_warning_count": 493,
+  "warnings_identical": true,
+  "new_or_changed_warnings": [],
+  "license_only_since_benchmark_ast_equal": true,
+  "reviewed_source_sha256": "031ba83e4541901b388d0b5d11dac531f02ce6cba4cd2005af6ad77e60cc89cf"
+}

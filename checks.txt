@@ -1,0 +1,38 @@
+Relevant tests (actual captured output; local source paths sanitized)
+
+........................................................................ [ 92%]
+......                                                                   [100%]
+============================== warnings summary ===============================
+tests/test_line_chunker.py::test_chunk_text_makes_progress_after_standalone_prefix
+  <workspace>\work\docling-core-2510-token-count\docling_core\transforms\chunker\line_chunker.py:93: UserWarning: Chunks prefix is too long (1 tokens) for chunk size 1. It will be split into multiple chunks and only included in the first chunk(s). Consider increasing max_tokens to accommodate the full prefix in each chunk.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+78 passed, 1 warning in 27.46s
+
+make check (493 warning lines omitted here; exact baseline/candidate equality in check-comparison.json)
+
+uv run ruff format --check --config=pyproject.toml docling_core tests examples packages/dclq .github/scripts
+177 files already formatted
+uv run ruff check --config=pyproject.toml docling_core tests examples packages/dclq .github/scripts
+All checks passed!
+uv run --no-sync ty check
+Found 493 diagnostics
+uv run --no-sync python scripts/check_compat_projectors.py
+OK: 6 projector(s) registered for schema 1.5..1.11, all snapshots present.
+uv lock --locked
+Resolved 183 packages in 32ms
+make validate (actual captured output)
+
+trim trailing whitespace.................................................Passed
+fix end of files.........................................................Passed
+check yaml...........................................(no files to check)Skipped
+check toml...........................................(no files to check)Skipped
+check for merge conflicts................................................Passed
+check for added large files..............................................Passed
+Ruff linter..............................................................Passed
+Ruff formatter...........................................................Passed
+Compat projector coverage............................(no files to check)Skipped
+ty.......................................................................Passed
+Docs.....................................................................Passed
+uv-lock..............................................(no files to check)Skipped

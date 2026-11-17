@@ -1,0 +1,21 @@
+{
+  "scope": "Read-only existing-pstats audit; no benchmark or product invocation.",
+  "facts": [
+    "common._iterate_items caller get_excluded_refs increases 24586 -> 49172; caller get_parts remains 87936.",
+    "get_excluded_refs total calls remain 16777. Its cache-miss comprehension exhausts a complete _iterate_items traversal each time.",
+    "The additional 24586 generator calls correspond to one additional complete traversal of this fixed input; recursive _iterate_items_with_stack calls increase 215924.",
+    "The source at common.py:449-495 keys _excluded_refs_cache by params.model_dump_json(), with traversal only on cache miss.",
+    "CommonParams.labels and layers are sets; serialize() produces my_kwargs from self.params.model_dump() plus overrides.",
+    "The line-count optimization executes later than hierarchical serialization and does not modify these serializer functions."
+  ],
+  "hypotheses": [
+    "Set iteration/JSON representation after copies may differ under per-process hash randomization and produce distinct JSON cache keys for equal parameter sets. This is plausible from source, not proven for the old runs.",
+    "Different effective parameters could also produce a legitimate cache miss. The old pstats do not record parameters/cache keys, so exact cause cannot be recovered from these profiles alone."
+  ],
+  "limits": [
+    "The historical logs did not record actual cache keys or PYTHONHASHSEED. Do not attribute the miss difference conclusively to hash seed, OS load or the candidate change.",
+    "More traversal work explains a measurable workload difference, not the entire 13.799-second profile increase. Many unchanged functions also took longer per call.",
+    "Cumulative times overlap. Do not add get_excluded_refs, _iterate_items and iterate_items cumulative times."
+  ],
+  "recommendation": "For the new frozen-harness ABBA run, set and record a fixed PYTHONHASHSEED in the child environment, preserve all original evidence, and record CPU and wall times separately. No new profile runs are needed solely to obtain a favorable time."
+}

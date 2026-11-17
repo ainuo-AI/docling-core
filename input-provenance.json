@@ -1,0 +1,53 @@
+{
+  "status": "success",
+  "import_seconds": 16.625,
+  "conversion_seconds": 26.70300000000043,
+  "save_seconds": 5.780999999999949,
+  "texts": 12965,
+  "tables": 1904,
+  "pictures": 1908,
+  "groups": 7808,
+  "schema_version": "1.11.0",
+  "source_modules": {
+    "converter": {
+      "path": "docling/document_converter.py",
+      "sha256": "a3e46a0a83561c4bf6c15dce1d263d20b4caf3baa3eabc3e8d511cc078351a3a"
+    },
+    "html_backend": {
+      "path": "docling/backend/html_backend.py",
+      "sha256": "42bd3a538818e80c2fcd6aa0d570f62f13daa40fab1ccdc3c1fdc661edce3068"
+    },
+    "document": {
+      "path": "docling_core/types/doc/document.py",
+      "sha256": "8fde340186ed3d92cf1fd8574d255c113579edebc1be12d940111b0577e724d2"
+    }
+  },
+  "installed_distribution_metadata_only": {
+    "docling-slim": "2.150.1",
+    "docling-core": "2.107.0",
+    "pydantic": "2.14.3"
+  },
+  "html": {
+    "bytes": 3190010,
+    "sha256": "d83f3cd31113087c8404a6df90e053a97b8a4d455f07788fc7fe4de4341bd79b"
+  },
+  "json": {
+    "bytes": 19847852,
+    "sha256": "ddd26f6ccced8ef8ff24f7bed01810b1ce659b903363a597c430434f7b86f77d",
+    "canonical_sha256": "acccce5c6c2877a1a529ec15525f141589332bccdc090948d6649b64a15fe49a"
+  },
+  "previous_json": {
+    "bytes": 19847852,
+    "sha256": "ddd26f6ccced8ef8ff24f7bed01810b1ce659b903363a597c430434f7b86f77d",
+    "canonical_sha256": "acccce5c6c2877a1a529ec15525f141589332bccdc090948d6649b64a15fe49a"
+  },
+  "json_values_equal": true,
+  "differing_top_level_keys": [],
+  "origin_equal": true,
+  "source_commits": {
+    "docling": "c79492e711d69b204fd07a21bf18b84257119f15",
+    "docling_core": "a8aa9dce1a80bee78bed991eb18ecbaa11bd6947"
+  },
+  "original_attachment_url": "https://github.com/user-attachments/files/23058884/hacker-news-discussion.html",
+  "issue_url": "https://github.com/docling-project/docling/issues/2510"
+}

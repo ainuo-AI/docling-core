@@ -1,0 +1,72 @@
+{
+  "fix_commit": "7274b61450d995b759b9ed02d240c70403e7cd2e",
+  "base_commit": "a8aa9dce1a80bee78bed991eb18ecbaa11bd6947",
+  "source_file": "docling_core/transforms/chunker/line_chunker.py",
+  "reviewed_working_file_sha256": "031ba83e4541901b388d0b5d11dac531f02ce6cba4cd2005af6ad77e60cc89cf",
+  "source_note": "Working-file byte hash includes Windows checkout line endings; publication binds the Git commit separately.",
+  "python": "3.12.10",
+  "platform": "Windows",
+  "dependency_versions": {
+    "docling-core": "2.107.0",
+    "docling-slim": "2.150.1",
+    "huggingface_hub": "1.10.2",
+    "pandas": "3.0.2",
+    "pyarrow": "24.0.0",
+    "pydantic": "2.9.2",
+    "semchunk": "3.2.5",
+    "tiktoken": "0.12.0",
+    "tokenizers": "0.22.2",
+    "transformers": "5.7.0",
+    "tree-sitter": "0.26.1",
+    "tree-sitter-c": "0.24.2",
+    "tree-sitter-javascript": "0.25.0",
+    "tree-sitter-python": "0.25.0",
+    "tree-sitter-typescript": "0.23.2"
+  },
+  "metadata_note": "Installed distribution metadata says docling-core 2.107.0; executed modules were explicitly verified from base 2.107.1 source plus candidate patch.",
+  "result_scope": "Fewer redundant token counts with equivalent checked output; stable end-to-end speedup not established.",
+  "evidence_preparation": "Path-sanitized extracts from retained local records. Replay script is portable public-API tooling, not the original frozen ABBA harness.",
+  "files": {
+    "check-comparison.json": {
+      "bytes": 287,
+      "sha256": "1845ef73d83c47bdd0e76a84a6fbcd2e9dbe2564fb9a124654fa17375f55a9c5"
+    },
+    "checks.txt": {
+      "bytes": 2471,
+      "sha256": "a0d59837d5e61af539a5c07c5420ae568014d47ccf96a8b227721af9760fd495"
+    },
+    "chunk-equivalence.json": {
+      "bytes": 28062,
+      "sha256": "42a69b30544c4816fef4e5c1c2f1db06e75bfa4b82cc09ca64a448eefd66196f"
+    },
+    "constructed-cases.json": {
+      "bytes": 41498,
+      "sha256": "2328229f16e8310f3899fe1be669bf64660d94c9ca03e94be0610039382d105f"
+    },
+    "controlled-attempt.json": {
+      "bytes": 4196,
+      "sha256": "ed3bf20f75b9c684cd69e6d780e3cc85d0f384f44932fc751917444ad1c10cc7"
+    },
+    "extra-traversal.json": {
+      "bytes": 2112,
+      "sha256": "28d98b30c7a79ae62d8de3756522c2e03ed273f5adb7e197a869640bfb2211b2"
+    },
+    "input-provenance.json": {
+      "bytes": 1905,
+      "sha256": "b87e171ef15501b8e0cf6b82b6cdd4a0d6b039624e23b98a62741a84bb7209b8"
+    },
+    "profile-comparison.json": {
+      "bytes": 12320,
+      "sha256": "bf27c469ece4a63ba26f8052da5daac4b21790372b6d290871f8679c9ce4e53a"
+    },
+    "README.md": {
+      "bytes": 6766,
+      "sha256": "259678ede8dbac9b1ceafa25d4604007ec635e7bac1c14014a2c976b48361f84"
+    },
+    "replay.py": {
+      "bytes": 7290,
+      "sha256": "f168a10d06f06621f21c433cbac308ee032fe0baa7cc67247226769cfd985568"
+    }
+  },
+  "file_hash_note": "SHA-256 of the distributed bytes; manifest itself excluded to avoid a self-hash cycle."
+}

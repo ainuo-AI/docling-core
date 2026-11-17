@@ -1,0 +1,125 @@
+{
+  "status": "incomplete",
+  "complete": false,
+  "attempted_sequence": [
+    "baseline",
+    "candidate",
+    "candidate",
+    "baseline"
+  ],
+  "completed_sequence": [
+    "baseline",
+    "candidate",
+    "candidate"
+  ],
+  "completed_runs": [
+    {
+      "index": 1,
+      "variant": "baseline",
+      "wall_seconds": 27.72184329999982,
+      "cpu_seconds": 27.34375,
+      "cpu_wall_ratio": 0.9863611775051112,
+      "gc_before": [
+        0,
+        0,
+        0
+      ],
+      "gc_after": [
+        202,
+        3,
+        5
+      ],
+      "chunks": 2674,
+      "max_tokens": 256,
+      "over_budget": 0,
+      "canonical_sha256": "be1066018dd5e8cdb7a68a20650524ddbd1ee9cd659301aedeb575b064460cbc",
+      "contextualized_sha256": "e0d7dcc8ca1556c75e00c665bbddd593540c9755bedfcee57d59fbb84cd9751f",
+      "full_output_and_token_vectors_equal": true,
+      "run_id": "run-20261117-150439-exact"
+    },
+    {
+      "index": 2,
+      "variant": "candidate",
+      "wall_seconds": 24.433168900000055,
+      "cpu_seconds": 24.1875,
+      "cpu_wall_ratio": 0.989945270668511,
+      "gc_before": [
+        0,
+        0,
+        0
+      ],
+      "gc_after": [
+        202,
+        3,
+        5
+      ],
+      "chunks": 2674,
+      "max_tokens": 256,
+      "over_budget": 0,
+      "canonical_sha256": "be1066018dd5e8cdb7a68a20650524ddbd1ee9cd659301aedeb575b064460cbc",
+      "contextualized_sha256": "e0d7dcc8ca1556c75e00c665bbddd593540c9755bedfcee57d59fbb84cd9751f",
+      "full_output_and_token_vectors_equal": true,
+      "run_id": "run-20261117-150544-exact"
+    },
+    {
+      "index": 3,
+      "variant": "candidate",
+      "wall_seconds": 30.851004500000272,
+      "cpu_seconds": 29.796875,
+      "cpu_wall_ratio": 0.9658315987733799,
+      "gc_before": [
+        0,
+        0,
+        0
+      ],
+      "gc_after": [
+        202,
+        3,
+        5
+      ],
+      "chunks": 2674,
+      "max_tokens": 256,
+      "over_budget": 0,
+      "canonical_sha256": "be1066018dd5e8cdb7a68a20650524ddbd1ee9cd659301aedeb575b064460cbc",
+      "contextualized_sha256": "e0d7dcc8ca1556c75e00c665bbddd593540c9755bedfcee57d59fbb84cd9751f",
+      "full_output_and_token_vectors_equal": true,
+      "run_id": "run-20261117-150644-exact"
+    }
+  ],
+  "failed_run": {
+    "variant": "baseline",
+    "index": 4,
+    "stage": "import_chunker",
+    "actual_chunk_started": false,
+    "exit_code": 15,
+    "observed_stage_seconds": 935.2340000000004,
+    "observed_total_seconds": 939.0630000000001,
+    "configured_stage_limit_seconds": 90,
+    "configured_total_limit_seconds": 300,
+    "heartbeat_gap_seconds": 933.9530000000001,
+    "interpretation": "Controller observed a large time/heartbeat gap and terminated the worker before actual_chunk. The reason for the gap is unknown; do not attribute it to the optimization or claim a chunking timeout.",
+    "run_id": "run-20261117-150750-exact"
+  },
+  "validation_scope": {
+    "three_completed_runs_have_equal_full_chunks_context_and_token_vectors": true,
+    "three_completed_runs_have_equal_recorded_distribution_versions": true,
+    "fourth_run_has_no_output_or_complete_runtime_dependency_record": true,
+    "source_and_frozen_harness_unchanged_through_stopping": true,
+    "failed_run_input_and_source_unchanged": true
+  },
+  "worker_status": {
+    "failed_worker_reaped_by_controller": true,
+    "other_three_workers_completed_normally": true,
+    "no_live_benchmark_workers_remaining": true,
+    "additional_runs_started": false
+  },
+  "verdict": "The ABBA protocol did not complete. Completed candidate times straddle the single completed baseline in both CPU and wall time, so this attempt does not establish stable end-to-end speedup. Preserve the verified token-call reduction and output equivalence; remove 18.8% as a headline speedup claim.",
+  "settings": {
+    "PYTHONHASHSEED": "0",
+    "profile": false,
+    "periodic_stack_sampling": false,
+    "gc_collect_before_timing": true,
+    "gc_enabled_during_timing": true,
+    "clock_scope": "Only list(chunker.chunk(doc)); preparation and output validation excluded."
+  }
+}

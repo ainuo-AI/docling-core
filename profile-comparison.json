@@ -1,0 +1,408 @@
+{
+  "scope": "Read-only analysis of existing profiles; cumulative times overlap and must not be added.",
+  "source_profile_ids": {
+    "baseline": "run-20261117-143859-exact",
+    "candidate": "run-20261117-145028-exact"
+  },
+  "baseline_total_seconds": 40.6312672,
+  "candidate_total_seconds": 54.43066020000004,
+  "selected_functions": [
+    {
+      "function": "docling_core/transforms/chunker/hybrid_chunker.py::segment@335",
+      "baseline": {
+        "primitive_calls": 1,
+        "calls": 1,
+        "self_seconds": 0.0026274000000000002,
+        "cumulative_seconds": 10.6802226,
+        "line": 335,
+        "callers": {
+          "docling_core/transforms/chunker/hybrid_chunker.py::_split_using_plain_text@275": [
+            1,
+            1,
+            0.0026274000000000002,
+            10.6802226
+          ]
+        }
+      },
+      "candidate": {
+        "primitive_calls": 1,
+        "calls": 1,
+        "self_seconds": 0.0036194,
+        "cumulative_seconds": 10.8611997,
+        "line": 335,
+        "callers": {
+          "docling_core/transforms/chunker/hybrid_chunker.py::_split_using_plain_text@275": [
+            1,
+            1,
+            0.0036194,
+            10.8611997
+          ]
+        }
+      },
+      "delta_self_seconds": 0.0009919999999999998,
+      "delta_cumulative_seconds": 0.18097709999999978,
+      "delta_calls": 0
+    },
+    {
+      "function": "docling_core/transforms/chunker/hybrid_chunker.py::_split_table_by_columns@505",
+      "baseline": {
+        "primitive_calls": 1,
+        "calls": 1,
+        "self_seconds": 0.0345823,
+        "cumulative_seconds": 10.6518578,
+        "line": 505,
+        "callers": {
+          "docling_core/transforms/chunker/hybrid_chunker.py::segment@335": [
+            1,
+            1,
+            0.0345823,
+            10.6518578
+          ]
+        }
+      },
+      "candidate": {
+        "primitive_calls": 1,
+        "calls": 1,
+        "self_seconds": 0.0403086,
+        "cumulative_seconds": 10.8336897,
+        "line": 505,
+        "callers": {
+          "docling_core/transforms/chunker/hybrid_chunker.py::segment@335": [
+            1,
+            1,
+            0.0403086,
+            10.8336897
+          ]
+        }
+      },
+      "delta_self_seconds": 0.005726299999999997,
+      "delta_cumulative_seconds": 0.1818319000000006,
+      "delta_calls": 0
+    },
+    {
+      "function": "docling_core/transforms/chunker/hierarchical_chunker.py::chunk@197",
+      "baseline": {
+        "primitive_calls": 2,
+        "calls": 2,
+        "self_seconds": 0.084777,
+        "cumulative_seconds": 23.0796794,
+        "line": 197,
+        "callers": {
+          "docling_core/transforms/chunker/hybrid_chunker.py::chunk@698": [
+            2,
+            2,
+            0.084777,
+            23.0796794
+          ]
+        }
+      },
+      "candidate": {
+        "primitive_calls": 2,
+        "calls": 2,
+        "self_seconds": 0.09190480000000001,
+        "cumulative_seconds": 33.2851294,
+        "line": 197,
+        "callers": {
+          "docling_core/transforms/chunker/hybrid_chunker.py::chunk@698": [
+            2,
+            2,
+            0.09190480000000001,
+            33.2851294
+          ]
+        }
+      },
+      "delta_self_seconds": 0.007127800000000004,
+      "delta_cumulative_seconds": 10.205450000000003,
+      "delta_calls": 0
+    },
+    {
+      "function": "docling_core/transforms/chunker/hybrid_chunker.py::_split_using_plain_text@275",
+      "baseline": {
+        "primitive_calls": 1,
+        "calls": 1,
+        "self_seconds": 0.0026125000000000002,
+        "cumulative_seconds": 13.741529100000001,
+        "line": 275,
+        "callers": {
+          "docling_core/transforms/chunker/hybrid_chunker.py::chunk@698": [
+            1,
+            1,
+            0.0026125000000000002,
+            13.741529100000001
+          ]
+        }
+      },
+      "candidate": {
+        "primitive_calls": 1,
+        "calls": 1,
+        "self_seconds": 0.0036844000000000004,
+        "cumulative_seconds": 14.883958400000001,
+        "line": 275,
+        "callers": {
+          "docling_core/transforms/chunker/hybrid_chunker.py::chunk@698": [
+            1,
+            1,
+            0.0036844000000000004,
+            14.883958400000001
+          ]
+        }
+      },
+      "delta_self_seconds": 0.0010719000000000002,
+      "delta_cumulative_seconds": 1.1424292999999999,
+      "delta_calls": 0
+    },
+    {
+      "function": "docling_core/transforms/chunker/line_chunker.py::chunk_text",
+      "baseline": {
+        "primitive_calls": 1,
+        "calls": 1,
+        "self_seconds": 0.0826815,
+        "cumulative_seconds": 6.6308484000000005,
+        "line": 164,
+        "callers": {
+          "docling_core/transforms/chunker/hybrid_chunker.py::_split_table_by_columns@505": [
+            1,
+            1,
+            0.0826815,
+            6.6308484000000005
+          ]
+        }
+      },
+      "candidate": {
+        "primitive_calls": 1,
+        "calls": 1,
+        "self_seconds": 0.0997958,
+        "cumulative_seconds": 5.964419,
+        "line": 164,
+        "callers": {
+          "docling_core/transforms/chunker/hybrid_chunker.py::_split_table_by_columns@505": [
+            1,
+            1,
+            0.0997958,
+            5.964419
+          ]
+        }
+      },
+      "delta_self_seconds": 0.0171143,
+      "delta_cumulative_seconds": -0.6664294000000002,
+      "delta_calls": 0
+    },
+    {
+      "function": "docling_core/transforms/serializer/common.py::serialize@528",
+      "baseline": {
+        "primitive_calls": 1,
+        "calls": 24584,
+        "self_seconds": 1.2840265000000002,
+        "cumulative_seconds": 21.1552973,
+        "line": 528,
+        "callers": {
+          "docling_core/transforms/serializer/markdown.py::serialize@1336": [
+            24584,
+            1,
+            1.2840265000000002,
+            21.1552973
+          ]
+        }
+      },
+      "candidate": {
+        "primitive_calls": 1,
+        "calls": 24584,
+        "self_seconds": 1.8290452000000001,
+        "cumulative_seconds": 30.6681229,
+        "line": 528,
+        "callers": {
+          "docling_core/transforms/serializer/markdown.py::serialize@1336": [
+            24584,
+            1,
+            1.8290452000000001,
+            30.6681229
+          ]
+        }
+      },
+      "delta_self_seconds": 0.5450187,
+      "delta_cumulative_seconds": 9.5128256,
+      "delta_calls": 0
+    },
+    {
+      "function": "docling_core/transforms/chunker/hybrid_chunker.py::_merge_chunks_with_matching_metadata@426",
+      "baseline": {
+        "primitive_calls": 1,
+        "calls": 1,
+        "self_seconds": 0.0264297,
+        "cumulative_seconds": 3.0662613000000003,
+        "line": 426,
+        "callers": {
+          "docling_core/transforms/chunker/hybrid_chunker.py::chunk@698": [
+            1,
+            1,
+            0.0264297,
+            3.0662613000000003
+          ]
+        }
+      },
+      "candidate": {
+        "primitive_calls": 1,
+        "calls": 1,
+        "self_seconds": 0.045196,
+        "cumulative_seconds": 5.1555347000000005,
+        "line": 426,
+        "callers": {
+          "docling_core/transforms/chunker/hybrid_chunker.py::chunk@698": [
+            1,
+            1,
+            0.045196,
+            5.1555347000000005
+          ]
+        }
+      },
+      "delta_self_seconds": 0.0187663,
+      "delta_cumulative_seconds": 2.0892734,
+      "delta_calls": 0
+    },
+    {
+      "function": "docling_core/transforms/chunker/tokenizer/openai.py::count_tokens@39",
+      "baseline": {
+        "primitive_calls": 69092,
+        "calls": 69092,
+        "self_seconds": 0.2021405,
+        "cumulative_seconds": 14.4574364,
+        "line": 39,
+        "callers": {
+          "docling_core/transforms/chunker/line_chunker.py::chunk_text": [
+            45795,
+            45795,
+            0.10132740000000001,
+            6.538510700000001
+          ],
+          "docling_core/transforms/chunker/hybrid_chunker.py::_split_table_by_columns@505": [
+            1,
+            1,
+            0.0097908,
+            1.0748228
+          ],
+          "docling_core/transforms/chunker/line_chunker.py::prefix_chunks": [
+            1,
+            1,
+            5.4e-06,
+            0.00012140000000000001
+          ],
+          "docling_core/transforms/chunker/hybrid_chunker.py::_merge_chunks_with_matching_metadata@426": [
+            2674,
+            2674,
+            0.0093874,
+            0.758816
+          ],
+          "docling_core/transforms/chunker/line_chunker.py::prefix_len": [
+            1,
+            1,
+            1.9e-06,
+            1.94e-05
+          ],
+          "docling_core/transforms/chunker/hybrid_chunker.py::row_fits_with_header@627": [
+            12593,
+            12593,
+            0.030559600000000003,
+            1.2951051
+          ],
+          "docling_core/transforms/chunker/hybrid_chunker.py::_count_text_tokens@134": [
+            1,
+            1,
+            0.0092507,
+            0.9541899
+          ],
+          "docling_core/transforms/chunker/hybrid_chunker.py::_count_chunk_tokens@149": [
+            8022,
+            8022,
+            0.041799800000000005,
+            3.8350468
+          ],
+          "docling_core/transforms/chunker/hybrid_chunker.py::<genexpr>@389": [
+            1,
+            1,
+            1.3700000000000001e-05,
+            0.0007733000000000001
+          ],
+          "docling_core/transforms/chunker/hybrid_chunker.py::_estimate_delimiter_tokens@162": [
+            3,
+            3,
+            3.8e-06,
+            3.1e-05
+          ]
+        }
+      },
+      "candidate": {
+        "primitive_calls": 41235,
+        "calls": 41235,
+        "self_seconds": 0.24179230000000002,
+        "cumulative_seconds": 17.0309324,
+        "line": 39,
+        "callers": {
+          "docling_core/transforms/chunker/hybrid_chunker.py::_split_table_by_columns@505": [
+            1,
+            1,
+            0.0082168,
+            1.215649
+          ],
+          "docling_core/transforms/chunker/line_chunker.py::prefix_chunks": [
+            1,
+            1,
+            4.3e-06,
+            5.17e-05
+          ],
+          "docling_core/transforms/chunker/hybrid_chunker.py::_merge_chunks_with_matching_metadata@426": [
+            2674,
+            2674,
+            0.0191295,
+            1.3699925000000002
+          ],
+          "docling_core/transforms/chunker/line_chunker.py::chunk_text": [
+            17938,
+            17938,
+            0.09048,
+            5.8500037
+          ],
+          "docling_core/transforms/chunker/hybrid_chunker.py::row_fits_with_header@627": [
+            12593,
+            12593,
+            0.0396042,
+            1.6053745000000001
+          ],
+          "docling_core/transforms/chunker/hybrid_chunker.py::_count_text_tokens@134": [
+            1,
+            1,
+            0.0101548,
+            1.0312382
+          ],
+          "docling_core/transforms/chunker/hybrid_chunker.py::_count_chunk_tokens@149": [
+            8022,
+            8022,
+            0.0741773,
+            5.9574328
+          ],
+          "docling_core/transforms/chunker/hybrid_chunker.py::<genexpr>@389": [
+            1,
+            1,
+            1.46e-05,
+            0.0010805
+          ],
+          "docling_core/transforms/chunker/line_chunker.py::prefix_len": [
+            1,
+            1,
+            2.7e-06,
+            3.3e-05
+          ],
+          "docling_core/transforms/chunker/hybrid_chunker.py::_estimate_delimiter_tokens@162": [
+            3,
+            3,
+            8.1e-06,
+            7.65e-05
+          ]
+        }
+      },
+      "delta_self_seconds": 0.039651800000000015,
+      "delta_cumulative_seconds": 2.5734960000000004,
+      "delta_calls": -27857
+    }
+  ],
+  "note": "Recorded profiles have different harness SHA values and a serializer-workload difference. Call-count reduction is not a wall/CPU speedup percentage."
+}
