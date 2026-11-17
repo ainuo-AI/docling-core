@@ -1,0 +1,89 @@
+### Local validation evidence
+
+This is an extract of the final local run `20261117-115502`, with machine-specific paths and process IDs omitted. It describes the final patched implementation, not an earlier iteration. No PDF is included in this evidence bundle.
+
+**Input and source identity**
+
+- Input: [Georgia DDS 2023–2024 driver manual](https://dds.georgia.gov/document/document/ga-drivers-manual-2023-2024/download), **49,586,555 bytes**. This is a separately selected real public PDF, not the original input from #185.
+- Input and all 12 copied files: SHA-256 `e311de54ad0ee6f5913e18e694914a560dac3592987437290c271f53c0c7fa71`.
+- Base commit: `a8aa9dce1a80bee78bed991eb18ecbaa11bd6947`.
+- Baseline `docling_core/utils/file.py` SHA-256: `3d2d0fd797d3a0e12cda98b9a8ea1c22f74dd3c119aeb6b636b069aaaf73d442`.
+- Patched `docling_core/utils/file.py` SHA-256: `79a3fd59934272888aeb62d97c3f0d93eee04ded0d1b25041d869761a533c1b8`.
+- `tests/test_file_copy.py` SHA-256: `0d764c3fc5cfdc2a8d58fd06f821cc19360c05b50a64aecc3d5256dd7b90e3d5`.
+
+These file hashes identify the tested working-file bytes, including line endings; they are not Git object IDs.
+
+**Method**
+
+Two versions × two destination scenarios × three repeats = 12 fresh Python worker processes, using the public `resolve_source_to_path()` API. Each worker checked its imported module path and source SHA. The source PDF was at the same Chinese-containing path throughout. `ascii-explicit` used an ASCII destination root and an explicit `workdir`; `cjk-automatic` used `workdir=None` with the temporary-directory environment pointed at a Chinese-containing destination root. These are destination scenarios, not a complete input/output character-set matrix.
+
+Imports and the initial input hash completed before measurement. `tracemalloc` and elapsed-time measurement surrounded the resolver call. Copy hashing, mutation and cleanup happened afterwards. The parent sampled the actual worker PID's Windows working set, with the pre-call, post-import/post-hash working set as the baseline. It requested a 5 ms interval; the largest observed sampling gap was 16.2455 ms. The sampling window includes a small process-communication boundary and can miss short-lived peaks.
+
+Source, test, configuration and harness hashes, plus dependency-version snapshots, were checked before and after the entire matrix and remained unchanged.
+
+**Per-run measurements**
+
+Memory columns are bytes. “WS increase” is sampled working-set peak minus that worker's post-import baseline, not total process memory. Times are descriptive, rounded to six decimals; `results.json`/`results.csv` retain the original numeric values. The initial hash read warms the input cache. These instrumented, warm-cache runs are not a throughput benchmark.
+
+| Destination scenario | Version | Repeat | Python traced peak | WS baseline | Sampled WS peak | WS increase | Samples | Seconds |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| ascii-explicit | baseline | 1 | 49,602,054 | 97,738,752 | 147,410,944 | 49,672,192 | 15 | 0.104119 |
+| ascii-explicit | baseline | 2 | 49,602,054 | 98,095,104 | 147,767,296 | 49,672,192 | 16 | 0.101051 |
+| ascii-explicit | baseline | 3 | 49,602,054 | 98,004,992 | 147,677,184 | 49,672,192 | 16 | 0.095222 |
+| ascii-explicit | fixed | 1 | 1,072,206 | 97,902,592 | 98,775,040 | 872,448 | 9 | 0.046389 |
+| ascii-explicit | fixed | 2 | 1,072,206 | 98,000,896 | 98,873,344 | 872,448 | 7 | 0.038023 |
+| ascii-explicit | fixed | 3 | 1,072,206 | 97,837,056 | 98,713,600 | 876,544 | 6 | 0.038569 |
+| cjk-automatic | baseline | 1 | 49,605,561 | 97,660,928 | 147,460,096 | 49,799,168 | 17 | 0.115762 |
+| cjk-automatic | baseline | 2 | 49,605,561 | 98,013,184 | 147,808,256 | 49,795,072 | 18 | 0.108988 |
+| cjk-automatic | baseline | 3 | 49,605,561 | 97,771,520 | 147,566,592 | 49,795,072 | 19 | 0.102125 |
+| cjk-automatic | fixed | 1 | 1,076,058 | 97,697,792 | 98,693,120 | 995,328 | 10 | 0.048478 |
+| cjk-automatic | fixed | 2 | 1,076,058 | 97,935,360 | 98,942,976 | 1,007,616 | 7 | 0.038815 |
+| cjk-automatic | fixed | 3 | 1,076,058 | 97,976,320 | 98,988,032 | 1,011,712 | 8 | 0.037009 |
+
+Python traced allocation peaks were **49,602,054–49,605,561 bytes before** and **1,072,206–1,076,058 bytes after** (approximately 49.6 MB to 1.08 MB, decimal units) for this file and the new-destination path. Sampled working-set increases were 49,672,192–49,799,168 and 872,448–1,011,712 bytes, respectively. Working-set observations are supplementary, not exact memory bounds.
+
+**Content and lifetime checks: 12/12 passed**
+
+Every returned copy existed after the API returned, had the expected filename/directory, and matched the input's size and SHA-256. Each was a different file (`samefile` was false). Each worker modified and truncated only its returned copy and checked that the original's content and modification time were unchanged. It then explicitly deleted that copy and its owned empty directory and checked that the original remained intact. The final wrapper also checked the original's size, SHA-256 and modification time after all 12 runs. Cleanup did not recursively delete directories. “Ownership” here means independent file lifetime, not preservation of ACL/owner metadata.
+
+**Environment**
+
+Windows 11 (`Windows-11-10.0.26200-SP0`), Python 3.12.10, 64-bit AMD64, MSC v.1943. Both benchmark versions used matching dependencies. Relevant versions: requests 2.34.2, urllib3 2.8.0, pydantic 2.14.3, pydantic-core 2.50.4, pydantic-settings 2.16.3 and typing-extensions 4.16.0. All 14 direct runtime dependencies satisfied the source project's constraints; see `environment.txt` for the relevant-version extract.
+
+The source project's version field was 2.107.1, while the reused runtime's installed distribution metadata still said docling-core 2.107.0. Explicit source-tree imports and per-worker path/hash checks identify the code actually tested; this was not a test of an installed 2.107.1 wheel.
+
+**Regression tests and checks**
+
+The complete `tests/test_file_copy.py` and `tests/test_utils.py` selection passed with the lockfile's pytest 9.0.3 in a separate Python 3.12.10 tool environment. Extract from the final pinned log:
+
+```text
+pytest 9.0.3
+sha256 79a3fd59934272888aeb62d97c3f0d93eee04ded0d1b25041d869761a533c1b8
+57 passed, 1 skipped in 1.97s
+```
+
+The skip was the Windows symlink case because creation privileges were unavailable (WinError 1314); same-path and hard-link cases ran. ASCII/Chinese filenames, independent copies, existing destinations, temporary-file lifetime, bounded allocation and injected read/write/close/cleanup errors are covered. The allocation regression uses constructed bytes, not a genuine PDF. The injected OS errors are constructed tests, not actual disk exhaustion or bad-disk events.
+
+`make validate`, Ruff 0.16.10 and `git diff --check` passed. Targeted ty 0.0.33 checks reported only two expected deprecation warnings for the legacy API test. `sanitized-tests.txt` and `checks.txt` are explicitly labeled log extracts; local paths are omitted. Validation used isolated tools, `UV_NO_SYNC` and existing runtime dependencies, rather than a full all-extras environment sync.
+
+**Verified pytest command shape (PowerShell, from the repository root)**
+
+Activate the intended Python 3.12.10 environment with pytest 9.0.3 and the dependencies above first. These are the commands used for the test selection, with local interpreter and temporary-directory paths omitted:
+
+```powershell
+$env:PYTHONPATH = (Get-Location).Path
+$env:NO_PROXY = '*'
+python -X utf8 -c 'import pytest; assert pytest.__version__ == "9.0.3"; print("pytest", pytest.__version__)'
+python -X utf8 -m pytest tests/test_file_copy.py tests/test_utils.py -q -rs
+```
+
+`NO_PROXY` avoids an inherited proxy bypassing an existing test's mocked direct connection. The local run additionally used a dedicated `--basetemp` directory. These commands reproduce the regression-test selection, not the parent-process RSS sampling harness. This bundle contains measured results and the method, and does not claim to include a separately validated portable benchmark runner.
+
+**Scope and limits**
+
+- This measures public file-copy/staging I/O only, not PDF parsing, OCR or end-to-end conversion. One real file size and three repeats per scenario do not establish a general speedup or an all-input memory bound.
+- Successful temporary copies still occupy full disk space and remain the caller's responsibility. This does not solve the disk-quota problem in #185.
+- The bounded-copy path applies to new local destinations. Existing destinations retain the buffered read-before-write behavior; URL handling retains its existing buffering.
+- Error cleanup is best-effort: OS denial can leave a file/directory. Cleanup warnings preserve the original I/O exception. Explicit workdirs are not removed and may remain empty after a failed call. No crash/power-loss or actual full-disk experiment was performed.
+- `tracemalloc` does not cover all native allocations. Sampled working-set increases are neither total process memory nor operating-system lifetime peaks.
+- Linux/macOS, privileged Windows symlink handling, and the complete repository/all-extras CI suite were not run.

@@ -1,0 +1,27 @@
+EXTRACT: local make validate output
+
+trim trailing whitespace.................................................Passed
+fix end of files.........................................................Passed
+check yaml...........................................(no files to check)Skipped
+check toml...........................................(no files to check)Skipped
+check for merge conflicts................................................Passed
+check for added large files..............................................Passed
+Ruff linter..............................................................Passed
+Ruff formatter...........................................................Passed
+Compat projector coverage............................(no files to check)Skipped
+ty.......................................................................Passed
+Docs.....................................................................Passed
+uv-lock..............................................(no files to check)Skipped
+
+EXTRACT: targeted Ruff/ty output for the changed files
+
+All checks passed!
+2 files already formatted
+tests\test_file_copy.py:14:37: warning[deprecated] The function `resolve_file_source` is deprecated: Use `resolve_source_to_path()` or `resolve_source_to_stream()`  instead
+tests\test_file_copy.py:46:22: warning[deprecated] The function `resolve_file_source` is deprecated: Use `resolve_source_to_path()` or `resolve_source_to_stream()`  instead
+Found 2 diagnostics
+
+Recorded separately in the delivery manifest: git diff --check passed; git apply --reverse --check for the exported patch passed.
+Tools: Ruff 0.16.10, ty 0.0.33. The two deprecation diagnostics come from the legacy-API test.
+make validate used UV_NO_SYNC with isolated validation tools and existing runtime dependencies.
+Skipped hooks had no matching files; this is not a full repository/all-extras CI run.

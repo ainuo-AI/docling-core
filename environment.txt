@@ -1,0 +1,34 @@
+Environment recorded before and after the final 12-process matrix (unchanged)
+
+Benchmark runtime: 3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]
+Platform: Windows-11-10.0.26200-SP0
+Python optimization level: 0
+Source project version field: 2.107.1
+Installed docling-core distribution metadata: 2.107.0
+Workers imported explicitly selected source trees, verified by module path and file SHA-256.
+The installed distribution version does not identify the source code tested here.
+
+Direct runtime dependencies (all 14 satisfy the source project's constraints):
+defusedxml==0.7.1
+doclang==0.9.0
+jsonref==1.1.0
+jsonschema==4.26.0
+latex2mathml==3.81.1
+pandas==3.1.1
+pillow==13.0.0
+pydantic==2.14.3
+pydantic-settings==2.16.3
+pyyaml==6.0.3
+requests==2.34.2
+tabulate==0.10.0
+typer==0.27.3
+typing-extensions==4.16.0
+
+Additional relevant dependency versions:
+pydantic-core==2.50.4
+urllib3==2.8.0
+
+Separate pinned test-tool environment: Python 3.12.10, pytest==9.0.3.
+Validation tools: Ruff 0.16.10 and ty 0.0.33.
+Isolated validation tools used existing runtime dependencies; no full all-extras environment sync.
+This is a relevant-version extract, not a complete dependency lock or an all-platform CI run.

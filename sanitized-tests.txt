@@ -1,0 +1,11 @@
+EXTRACT from the final pinned pytest log; machine-specific source/temp paths omitted.
+The following result lines are copied verbatim:
+
+pytest 9.0.3
+sha256 79a3fd59934272888aeb62d97c3f0d93eee04ded0d1b25041d869761a533c1b8
+.............s............................................               [100%]
+57 passed, 1 skipped in 1.97s
+
+Skip reason (summary, not a verbatim traceback): Windows symlink creation requires a privilege
+unavailable in this environment (WinError 1314). Same-path and hard-link cases did execute.
+Source module: docling_core/utils/file.py (repository-relative label; original absolute path omitted).

@@ -1,0 +1,47 @@
+{
+  "fix_commit": "b030178f6718a03e153a3bdf553a80409c29a045",
+  "base_commit": "a8aa9dce1a80bee78bed991eb18ecbaa11bd6947",
+  "issue": "https://github.com/docling-project/docling-core/issues/185",
+  "scope": "Public local-file staging I/O only; no disk-quota fix",
+  "final_run": "20261117-115502",
+  "source_identity": {
+    "docling_core/utils/file.py": {
+      "measured_worktree_sha256": "79a3fd59934272888aeb62d97c3f0d93eee04ded0d1b25041d869761a533c1b8",
+      "committed_blob_sha256": "b9ee4493a11d53b85c2e5c025f3f4c1990e807d74713e67b4154fb1cf7d6f583",
+      "equal_after_lf_normalization": true
+    },
+    "tests/test_file_copy.py": {
+      "measured_worktree_sha256": "0d764c3fc5cfdc2a8d58fd06f821cc19360c05b50a64aecc3d5256dd7b90e3d5",
+      "committed_blob_sha256": "0d764c3fc5cfdc2a8d58fd06f821cc19360c05b50a64aecc3d5256dd7b90e3d5",
+      "equal_after_lf_normalization": true
+    }
+  },
+  "line_endings": "Measured Windows working-file hashes can differ from committed LF blob hashes; content equality after LF normalization was verified.",
+  "input_sha256": "e311de54ad0ee6f5913e18e694914a560dac3592987437290c271f53c0c7fa71",
+  "files": {
+    "checks.txt": {
+      "bytes": 1900,
+      "sha256": "39117cc27ba7568e91918a763dec2731257350accaef602889667baba82a1f72"
+    },
+    "environment.txt": {
+      "bytes": 1264,
+      "sha256": "4f2007280d87769abf3f39195d33edf97b041dd4a38cbab37a7337fce8dfccae"
+    },
+    "PUBLIC_VALIDATION.txt": {
+      "bytes": 9330,
+      "sha256": "37e7964c4d6fddf30f0eecdf2e6baafd564fec65831dadf4a80528f8f48585e5"
+    },
+    "results.csv": {
+      "bytes": 4470,
+      "sha256": "dd4521ce759328506bbec5d88614336316b4cab79babaad57cbbf8c21bc53440"
+    },
+    "results.json": {
+      "bytes": 16053,
+      "sha256": "6d7a10563f91bd5022323d08b1d8612ab3b34f631c45a04afc9c2d93686c4a6e"
+    },
+    "sanitized-tests.txt": {
+      "bytes": 632,
+      "sha256": "002a7cf0122fc9407c01edfe406c442ebc405711779ee0714d52065a196881bd"
+    }
+  }
+}
